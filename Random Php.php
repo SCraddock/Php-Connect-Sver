@@ -23,4 +23,18 @@ function createLinkToServer(){
   $conn->close();
 
 }
+
+
+/* ALTERNATE WAY USING EXTERNAL CREDENTIALS STORED OUTSIDE OF ROOT FOR SECURITY */
+
+function connect(){
+    $config = parse_ini_file('/home/sites/www.ikon-rotational.co.uk/db.ini');
+    $con = mysqli_connect($config['host'],$config['username'],$config['password'],$config['username']);
+    if(!$con){
+        die("Failed to connect to Database");
+    }
+    return $con;
+}
+
+
 ?>
